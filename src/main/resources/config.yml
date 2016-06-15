@@ -1,0 +1,44 @@
+# - v1.0
+
+#general options
+# Use a give command or any other minecraft command in actions... @p will be replaced.
+# https://minecraftcommand.science/custom-item-generator
+kits:
+  armor:
+    delay: 21600
+    permission: 'essentials.kits.armor'
+    announce: '&c@p&6 is a Scrub!'
+    message: '&6Here ya go &cscrub&6!'
+    actions:
+      - '/give @p wooden_sword 1 0 {display:{Name:"A Sharp Stick"}}'
+      - '/give @p leather_helmet 1 0 {}'
+      - '/give @p leather_chestplate 1 0 {}'
+      - '/give @p leather_leggings 1 0 {}'
+      - '/give @p leather_boots 1 0 {}'
+  tools:
+    delay: 57600
+    permission: 'essentials.kits.tools'
+    actions:
+      - '/give @p minecraft:golden_pickaxe 1 0 {ench:[{id:33,lvl:1}]}'
+      - '/give @p golden_shovel 1 0 {}'
+      - '/give @p golden_axe 1 0 {}'
+      - '/give @p golden_hoe 1 0 {}'
+
+#Required to track cooldown usage
+mysql:
+  host: localhost
+  port: 3306
+  username: root
+  password: password
+  database: essentiallykits
+  prefix: 'esskits_'
+
+#formatting of help output
+formatting:
+  kitList: '&6kits&f: {kits}'
+  kitReceived: '&6Received kit &c{kit}&6.'
+  kitNotFound: '&6Kit &c{kit}&6 not found.'
+  kitNotAvailable: '&6Kit &c{kit}&6 is not avialable at this time.'
+  kitNoAccess: '&cYou do not have access to that kit.'
+  kitTimeRemaining: '&6Please wait &c{time} {unit}&6 before using that.'
+  inventoryFull: '&cYou inventory was full, some items are on the ground.'
