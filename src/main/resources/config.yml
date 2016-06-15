@@ -1,7 +1,8 @@
 # - v1.0
 
 #general options
-# Use a give command or any other minecraft command in actions... @p will be replaced.
+# Use a give command or any other minecraft command in actions...
+# Variables: @p @x @y @z for player name or coordinates.
 # https://minecraftcommand.science/custom-item-generator
 kits:
   armor:
@@ -10,19 +11,21 @@ kits:
     announce: '&c@p&6 is a Scrub!'
     message: '&6Here ya go &cscrub&6!'
     actions:
-      - '/give @p wooden_sword 1 0 {display:{Name:"A Sharp Stick"}}'
-      - '/give @p leather_helmet 1 0 {}'
-      - '/give @p leather_chestplate 1 0 {}'
-      - '/give @p leather_leggings 1 0 {}'
-      - '/give @p leather_boots 1 0 {}'
+      - '/playsound block.note.harp neutral @p @x @y @z 15 2'
+      - '/title @p title {"text":"Congratulations!","color":"aqua","bold":true}'
+      - '/give @p minecraft:wooden_sword 1 0 {display:{Name:"A Sharp Stick"}}'
+      - '/give @p minecraft:leather_helmet 1 0 {}'
+      - '/give @p minecraft:leather_chestplate 1 0 {}'
+      - '/give @p minecraft:leather_leggings 1 0 {}'
+      - '/give @p minecraft:leather_boots 1 0 {}'
   tools:
     delay: 57600
     permission: 'essentials.kits.tools'
     actions:
       - '/give @p minecraft:golden_pickaxe 1 0 {ench:[{id:33,lvl:1}]}'
-      - '/give @p golden_shovel 1 0 {}'
-      - '/give @p golden_axe 1 0 {}'
-      - '/give @p golden_hoe 1 0 {}'
+      - '/give @p minecraft:golden_shovel 1 0'
+      - '/give @p minecraft:golden_axe 1'
+      - '/give @p minecraft:golden_hoe'
 
 #Required to track cooldown usage
 mysql:
