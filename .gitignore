@@ -13,3 +13,8 @@ dependency-reduced-pom.xml
 .project
 .settings/
 
+# intellij
+*.iml
+*.ipr
+*.iws
+.idea/
