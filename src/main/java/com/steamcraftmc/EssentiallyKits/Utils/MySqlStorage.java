@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 
 import org.bukkit.entity.Player;
@@ -14,6 +15,7 @@ public class MySqlStorage {
 	final MainPlugin plugin;
 	String tablePrefix = "esskits_"; 
     private Connection connection;
+    private long lastUsed;
 	
 	public MySqlStorage(MainPlugin plugin) {
 		this.plugin = plugin;
@@ -38,6 +40,21 @@ public class MySqlStorage {
 	}
 
 	public Connection connect() {
+
+		//Verify stale connections...
+		try {
+			if ((connection != null && !connection.isClosed()
+				&& (System.currentTimeMillis() - lastUsed) > 1000L * 60)) {
+					Statement st = connection.createStatement();
+					st.executeQuery("SELECT 1;").close();
+					st.close();
+			}
+		}
+		catch(SQLException e) {
+			close();
+		}
+		lastUsed = System.currentTimeMillis();
+		
         try
         {
             if (connection == null || connection.isClosed()) {
